@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>For You ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:#0f0f1a;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* Star background */
+
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px, transparent 1px);
+background-size:40px 40px;
+opacity:0.2;
+z-index:-1;
+}
+
+/* Opening screen */
+
+#start{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+button{
+padding:16px 35px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:#ff4f81;
+color:white;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Main content */
+
+#main{
+display:none;
+padding:30px;
+}
+
+h1{
+font-size:42px;
+margin-top:10px;
+}
+
+#letter{
+max-width:650px;
+margin:auto;
+font-size:20px;
+line-height:1.7;
+min-height:120px;
+}
+
+/* Polaroid gallery */
+
+.gallery{
+margin-top:50px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
+
+.polaroid{
+background:white;
+color:black;
+padding:10px;
+width:220px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+transform:rotate(-2deg);
+}
+
+.polaroid img{
+width:100%;
+border-radius:5px;
+}
+
+.polaroid p{
+margin:8px 0;
+font-size:14px;
+}
+
+/* Reasons section */
+
+.reasons{
+margin-top:60px;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+font-size:20px;
+line-height:2;
+}
+
+/* Hearts */
+
+.heart{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px);}
+100%{transform:translateY(110vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="start">
+
+<h1>I made something for you ❤️</h1>
+<p>Open when you're ready</p>
+
+<button onclick="start()">Open Surprise</button>
+
+</div>
+
+<div id="main">
+
+<h1>Happy Birthday ❤️</h1>
+
+<p id="letter"></p>
+
+<h2>Our Memories 📸</h2>
+
+<div class="gallery">
+
+<div class="polaroid">
+<img src="photo1.jpg">
+<p>Our first memory</p>
+</div>
+
+<div class="polaroid">
+<img src="photo2.jpg">
+<p>This day meant a lot</p>
+</div>
+
+<div class="polaroid">
+<img src="photo3.jpg">
+<p>One of my favourite moments</p>
+</div>
+
+<div class="polaroid">
+<img src="photo4.jpg">
+<p>And many more to come ❤️</p>
+</div>
+
+</div>
+
+<div class="reasons">
+
+<h2>Why you're special to me</h2>
+
+<p>
+• Your smile makes everything better  
+<br>• The way you care about people  
+<br>• Your laugh  
+<br>• Your kindness  
+<br>• The way you make ordinary moments feel special  
+<br>• Just being you ❤️
+</p>
+
+</div>
+
+</div>
+
+<audio id="music" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Start */
+
+function start(){
+
+document.getElementById("start").style.display="none";
+document.getElementById("main").style.display="block";
+
+document.getElementById("music").play();
+
+startHearts();
+typeLetter();
+
+}
+
+/* Floating hearts */
+
+function startHearts(){
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},300);
+
+}
+
+/* Typing letter */
+
+const text="Happy Birthday to the most amazing person in my life. \
+Every moment with you feels special and I feel lucky to know you. \
+I hope this birthday brings you as much happiness as you bring to everyone around you. \
+Thank you for being the wonderful person you are. ❤️";
+
+let i=0;
+
+function typeLetter(){
+
+if(i<text.length){
+
+document.getElementById("letter").innerHTML+=text.charAt(i);
+i++;
+
+setTimeout(typeLetter,40);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
